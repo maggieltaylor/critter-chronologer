@@ -2,12 +2,17 @@ package com.udacity.jdnd.course3.critter;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.udacity.jdnd.course3.critter.pet.PetController;
-import com.udacity.jdnd.course3.critter.pet.PetDTO;
-import com.udacity.jdnd.course3.critter.pet.PetType;
-import com.udacity.jdnd.course3.critter.schedule.ScheduleController;
-import com.udacity.jdnd.course3.critter.schedule.ScheduleDTO;
-import com.udacity.jdnd.course3.critter.user.*;
+import com.udacity.jdnd.course3.critter.pet.controller.PetController;
+import com.udacity.jdnd.course3.critter.pet.dto.PetDTO;
+import com.udacity.jdnd.course3.critter.pet.enumeration.PetType;
+import com.udacity.jdnd.course3.critter.schedule.controller.ScheduleController;
+import com.udacity.jdnd.course3.critter.schedule.dto.ScheduleDTO;
+import com.udacity.jdnd.course3.critter.user.controller.UserController;
+import com.udacity.jdnd.course3.critter.user.dto.CustomerDTO;
+import com.udacity.jdnd.course3.critter.user.dto.EmployeeDTO;
+import com.udacity.jdnd.course3.critter.user.dto.EmployeeRequestDTO;
+import com.udacity.jdnd.course3.critter.user.enumeration.EmployeeSkill;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +58,7 @@ public class CritterFunctionalTest {
     }
 
     @Test
+    @SneakyThrows
     public void testCreateEmployee(){
         EmployeeDTO employeeDTO = createEmployeeDTO();
         EmployeeDTO newEmployee = userController.saveEmployee(employeeDTO);
@@ -63,6 +69,7 @@ public class CritterFunctionalTest {
     }
 
     @Test
+    @SneakyThrows
     public void testAddPetsToCustomer() {
         CustomerDTO customerDTO = createCustomerDTO();
         CustomerDTO newCustomer = userController.saveCustomer(customerDTO);
@@ -106,6 +113,7 @@ public class CritterFunctionalTest {
     }
 
     @Test
+    @SneakyThrows
     public void testFindOwnerByPet() {
         CustomerDTO customerDTO = createCustomerDTO();
         CustomerDTO newCustomer = userController.saveCustomer(customerDTO);
@@ -120,6 +128,7 @@ public class CritterFunctionalTest {
     }
 
     @Test
+    @SneakyThrows
     public void testChangeEmployeeAvailability() {
         EmployeeDTO employeeDTO = createEmployeeDTO();
         EmployeeDTO emp1 = userController.saveEmployee(employeeDTO);
@@ -194,6 +203,7 @@ public class CritterFunctionalTest {
     }
 
     @Test
+    @SneakyThrows
     public void testFindScheduleByEntities() {
         ScheduleDTO sched1 = populateSchedule(1, 2, LocalDate.of(2019, 12, 25), Sets.newHashSet(EmployeeSkill.FEEDING, EmployeeSkill.WALKING));
         ScheduleDTO sched2 = populateSchedule(3, 1, LocalDate.of(2019, 12, 26), Sets.newHashSet(EmployeeSkill.PETTING));
